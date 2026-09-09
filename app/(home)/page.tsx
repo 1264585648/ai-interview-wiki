@@ -26,7 +26,7 @@ export default function HomePage() {
 
       <section>
         <h2 className="mb-4 text-lg font-semibold">分类入口</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((item) => (
             <Link
               key={item.slug}

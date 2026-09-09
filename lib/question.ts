@@ -14,11 +14,12 @@ export const questionSchema = pageSchema.extend({
 });
 
 export const categories = [
+  { slug: "prompt-engineering", title: "提示词工程", href: "/docs/prompt-engineering" },
+  { slug: "ai", title: "AI Agent", href: "/docs/ai" },
   { slug: "java", title: "Java", href: "/docs/java" },
   { slug: "database", title: "数据库", href: "/docs/database" },
   { slug: "distributed", title: "分布式系统", href: "/docs/distributed" },
   { slug: "system-design", title: "系统设计", href: "/docs/system-design" },
-  { slug: "ai", title: "AI Agent", href: "/docs/ai" },
 ] as const;
 
 export function frequencyLabel(value?: string) {
