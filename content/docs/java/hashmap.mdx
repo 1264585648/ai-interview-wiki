@@ -1,0 +1,59 @@
+---
+title: HashMap 原理
+description: Java HashMap 桶、树化、扩容。标签 HashMap 集合
+category: Java
+tags:
+  - HashMap
+  - 集合
+  - Java
+difficulty: 3
+frequency: high
+companies:
+  - 字节
+  - 阿里
+  - 美团
+updated: 2026-09-09
+popular: true
+---
+
+# 问题
+
+HashMap 为什么能 O(1) 查找，什么时候会退化？
+
+# 30秒回答
+
+HashMap 用 key 的 hash 定位桶。JDK 8 冲突少时是链表，单桶过长会树化成红黑树。容量超过负载因子就扩容并重新映射。不是严格 O(1)，极端冲突会变差。
+
+# 深入理解
+
+hash 先扰动，再和 `(n - 1)` 做与运算定位桶。默认负载因子 0.75，是空间和冲突的折中。链表长度超过 8 且数组容量不小于 64 时树化；小于 6 会退回链表。扩容通常扩到 2 倍，节点按 hash 的高位决定留在原桶还是新桶。
+
+Key 必须实现合理的 `hashCode` 和 `equals`。HashMap 非线程安全，并发写要用 `ConcurrentHashMap`。
+
+# 面试追问
+
+## 为什么容量是 2 的幂？
+
+`(n - 1) & hash` 才等价于取模，而且扩容时只看多出来的那一位。
+
+## 为什么树化阈值是 8？
+
+冲突链表变长后查找退化成 O(n)。8 是泊松分布下很少出现的长度，用红黑树换更稳定的最坏情况。
+
+# 真实面经
+
+公司：字节
+
+岗位：Java 后端
+
+时间：2025
+
+问题来源：一面手写讲桶和扩容
+
+# 关联知识
+
+数组
+
+红黑树
+
+ConcurrentHashMap

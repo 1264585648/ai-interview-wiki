@@ -1,0 +1,60 @@
+---
+title: RAG 为什么需要 Rerank
+description: 为什么不能只用 Embedding 排序。标签 RAG Rerank Retrieval Embedding
+category: AI Agent
+tags:
+  - RAG
+  - Rerank
+  - Retrieval
+  - Embedding
+difficulty: 3
+frequency: high
+companies:
+  - 字节 × 8
+  - 阿里 × 6
+  - 腾讯
+updated: 2026-09-09
+popular: true
+---
+
+# 问题
+
+RAG 为什么需要 Rerank？
+
+# 30秒回答
+
+Embedding 召回便宜，但只看独立向量相似度，排不细。Rerank 用交叉编码器同时看问题和候选段落，交互更多，排序更准。代价是更慢，所以只对前几十条做精排。
+
+# 深入理解
+
+双塔 Embedding 把 query 和文档分开编码，快，适合全库召回。它弱在否定、词序、术语对齐。Cross Encoder 把 query 和文档拼在一起编码，能看到交互，精度高，不能对全库逐条算。
+
+常见做法：向量加关键词召回 top 50，Rerank 取 top 5 再生成。没有 Rerank 时，生成模型更容易吃到相关但不回答问题的片段。
+
+# 面试追问
+
+## 为什么不用 Embedding 直接排序？
+
+Embedding 分数是粗相似度，不是“这段能不能回答这个问题”。同主题段落都会得分，真正的答案片段可能排在后面。
+
+## Cross Encoder 为什么更准确？
+
+它联合编码问题和候选，注意力能对齐二者的词。双塔没有这次交互，只能比较两个独立向量。
+
+# 真实面经
+
+公司：字节
+
+岗位：AI 应用
+
+时间：2025
+
+问题来源：一面追问召回和精排
+
+# 关联知识
+
+Embedding
+
+Vector Database
+
+Retriever

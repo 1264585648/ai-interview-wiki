@@ -1,0 +1,58 @@
+---
+title: Function Calling
+description: 模型选工具和参数约束。标签 Function Calling 工具
+category: AI Agent
+tags:
+  - Function Calling
+  - 工具
+  - JSON Schema
+difficulty: 2
+frequency: medium
+companies:
+  - 腾讯
+  - 字节
+updated: 2026-09-05
+popular: false
+---
+
+# 问题
+
+Function Calling 到底让模型做了什么？
+
+# 30秒回答
+
+模型不直接执行代码。它根据工具的名字、说明和参数 schema 决定调用哪个函数、填什么参数。应用执行后把结果再交回模型，模型继续回答。
+
+# 深入理解
+
+工具描述决定调用质量。参数用 schema 约束类型和必填项，执行前仍要校验。失败要返回结构化错误，让模型能改参数或放弃。不要把敏感操作做成没有确认的工具。
+
+函数调用适合确定的外部动作：查库存、查文档、发请求。开放推理仍由模型做。
+
+# 面试追问
+
+## 和提示词里写“请调用接口”有什么差别？
+
+Function Calling 有结构化协议，参数可校验。纯提示词只能解析自然语言，失败模式更多。
+
+## 多个工具怎么选？
+
+靠描述互斥、示例和返回的 tool name。描述重叠时模型会选错。
+
+# 真实面经
+
+公司：腾讯
+
+岗位：后端 / AI 应用
+
+时间：2025
+
+问题来源：一面讲工具调用协议
+
+# 关联知识
+
+Agent
+
+JSON Schema
+
+MCP

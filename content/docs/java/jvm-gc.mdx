@@ -1,0 +1,58 @@
+---
+title: JVM GC
+description: 分代回收、STW 和常见收集器。标签 JVM GC
+category: Java
+tags:
+  - JVM
+  - GC
+  - Java
+difficulty: 4
+frequency: high
+companies:
+  - 阿里
+  - 美团
+updated: 2026-09-08
+popular: true
+---
+
+# 问题
+
+JVM 怎么判断对象可回收，Full GC 为什么要少？
+
+# 30秒回答
+
+可达性分析从 GC Roots 找活对象。新生代用复制算法处理短命对象，老年代处理存活久的对象。Full GC 通常要停顿整理更大范围，所以频繁 Full GC 说明分配、泄漏或晋升过多。
+
+# 深入理解
+
+GC Roots 包括栈上引用、静态变量、JNI 引用。Young GC 回收 Eden 和 Survivor。对象熬过多次晋升到老年代。G1 把堆切成 Region，优先回收垃圾多的区域。ZGC 目标是更短停顿，不是不回收。
+
+看 GC 先看频率、停顿、晋升失败和分配速率，再决定调堆还是改代码。
+
+# 面试追问
+
+## 什么时候会 Full GC？
+
+老年代空间不足、元空间不足、显式 `System.gc()`，以及部分晋升失败场景。
+
+## 如何判断是不是内存泄漏？
+
+老年代持续上涨且 Full GC 后回收不下来，再结合 heap dump 看谁持有对象。
+
+# 真实面经
+
+公司：阿里
+
+岗位：Java 后端
+
+时间：2025
+
+问题来源：二面讲 G1 和一次 Full GC 排查
+
+# 关联知识
+
+JVM 内存模型
+
+堆外内存
+
+对象晋升
