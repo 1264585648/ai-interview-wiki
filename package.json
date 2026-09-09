@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "preview:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "dev": "next dev",
     "start": "next start",
     "types:check": "next typegen && tsc --noEmit",
@@ -21,6 +24,7 @@
     "zod": "4.5.4"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.6",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
     "@types/node": "^26.4.1",
@@ -30,6 +34,7 @@
     "eslint-config-next": "16.3.4",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "wrangler": "^4.129.1"
   }
 }
