@@ -1,0 +1,21 @@
+{
+  "title": "26-Agent评测",
+  "pages": [
+    "01-BIRD评测DataAgent如何做公开数据评测",
+    "02-BIRD评测如何改造我们的DataAgent",
+    "03-BIRD评测评测数据的Schema改造",
+    "04-BIRD评测执行验证工具",
+    "05-BIRD评测如何跑一次完整的评测",
+    "06-BIRD评测如何和BaseLine进行对比",
+    "07-Agent评测Agent-评测为什么这么难",
+    "08-Agent评测如何构建评测体系Agent执行",
+    "09-Agent评测如何构建评测体系怎么评判",
+    "10-Agent评测如何构建评测体系问题定位",
+    "11-Agent评测实操评测数据集的构建",
+    "12-Agent评测实操LLM-as-Judge判分",
+    "13-Agent评测实操评分脚本运行与报告解读",
+    "14-Agent评测实操问题诊断流程",
+    "15-Agent评测实操trace-查询工具",
+    "16-Agent评测实操诊断运行"
+  ]
+}

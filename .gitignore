@@ -27,3 +27,4 @@ next-env.d.ts
 
 # OpenNext Cloudflare build
 /.open-next/
+/.wrangler/

@@ -1,0 +1,10 @@
+{
+  "title": "08-Function Call",
+  "pages": [
+    "01-什么是Function-Call",
+    "02-如何定义一个好的FunctionTool",
+    "03-使用Spring-AI做Function-Call",
+    "04-Spring-AI中的Tool-Calling怎么实现的",
+    "05-实战仿PDD自动帮买家申请退款"
+  ]
+}

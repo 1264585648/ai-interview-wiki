@@ -1,0 +1,29 @@
+{
+  "title": "11-Agent",
+  "pages": [
+    "01-什么是AI-Agent",
+    "02-常用的Agent开发框架",
+    "03-Agent常用架构ReAct-Agent",
+    "04-React-Agent的实现方式",
+    "05-Alibaba-React-Agent-初探",
+    "06-Alibaba-React-Agent-核心组件",
+    "07-如何给Agent增加持久化记忆",
+    "08-深入理解-Alibaba-React-Agent-原理",
+    "09-Agent常用架构Plan-and-Execute-Agent",
+    "10-Agent常用架构ReWOOLLMCompiler选学",
+    "11-Agent常用架构Reflection-Agent",
+    "12-Agent常用架构Human-in-the-Loop",
+    "13-Agent常用架构Multi-Agent",
+    "14-使用AutoGen-构建一个代码生成器",
+    "15-Spring-AI-Alibaba中的多智能体支持",
+    "16-多智能体协议——A2A",
+    "17-实战一手搓-ReactAgent非流式",
+    "18-实战一手搓-ReactAgent流式",
+    "19-ReAct-Agent-流式输出后续问题",
+    "20-实战二手搓-ReflectionAgent",
+    "21-实战三手搓-PlanExecuteAgent上",
+    "22-实战三手搓-PlanExecuteAgent下",
+    "23-实战四手搓-Human-in-the-Loop",
+    "24-AI-Agent落地的常见误区"
+  ]
+}
