@@ -59,7 +59,7 @@ export function getPageMarkdownUrl(page: WikiPage) {
 
 export function getPageSafe(slugs?: string[]) {
   if (!slugs || slugs.length === 0) {
-    return null;
+    return source.getPage([]) || null;
   }
 
   // 1. Direct match with raw slugs
@@ -73,15 +73,15 @@ export function getPageSafe(slugs?: string[]) {
     if (page) return page;
   } catch {}
 
-  // 3. Decode with decodeURI
+  // 3. Try encoded segments (because Fumadocs internally stores slugs percent-encoded)
   try {
-    const decoded = slugs.map((s) => decodeURI(s));
-    page = source.getPage(decoded);
+    const encoded = slugs.map((s) => encodeURIComponent(decodeURIComponent(s)));
+    page = source.getPage(encoded);
     if (page) return page;
   } catch {}
 
-  // 4. Normalized path match
-  const target = slugs
+  // 4. Normalized path match: compare fully decoded paths on both sides
+  const normalizedTarget = slugs
     .map((s) => {
       try {
         return decodeURIComponent(s);
@@ -89,18 +89,37 @@ export function getPageSafe(slugs?: string[]) {
         return s;
       }
     })
-    .join("/");
+    .join("/")
+    .toLowerCase();
 
   const allPages = source.getPages();
-  const matched = allPages.find(
-    (p) => p.slugs.join("/") === target || p.slugs.join("/").toLowerCase() === target.toLowerCase(),
-  );
+  const matched = allPages.find((p) => {
+    const decodedPSlugs = p.slugs
+      .map((s) => {
+        try {
+          return decodeURIComponent(s);
+        } catch {
+          return s;
+        }
+      })
+      .join("/")
+      .toLowerCase();
+    return decodedPSlugs === normalizedTarget;
+  });
   if (matched) return matched;
 
   // 5. If slug is a single file name (e.g. from relative link resolving without trailing slash), match last segment
   if (slugs.length === 1) {
-    const single = target.toLowerCase();
-    const byLast = allPages.find((p) => p.slugs[p.slugs.length - 1].toLowerCase() === single);
+    const single = normalizedTarget;
+    const byLast = allPages.find((p) => {
+      const last = p.slugs[p.slugs.length - 1];
+      if (!last) return false;
+      try {
+        return decodeURIComponent(last).toLowerCase() === single;
+      } catch {
+        return last.toLowerCase() === single;
+      }
+    });
     if (byLast) return byLast;
   }
 

@@ -31,13 +31,16 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
     const prefix = decodedSlugs.join("/");
     const allPages = source.getPages();
 
-    // Find the first document belonging to this directory (or first document in wiki if /docs)
+    // Find the first document belonging to this directory
+    // Ensure we don't redirect to self to prevent loops
+    const currentUrl = "/docs" + (prefix ? `/${prefix}` : "");
     const childPage = allPages.find((p) => {
       const pSlug = p.slugs.join("/");
+      if (!pSlug || p.url === currentUrl) return false;
       return prefix ? pSlug.startsWith(`${prefix}/`) : true;
     });
 
-    if (childPage) {
+    if (childPage && childPage.url !== currentUrl) {
       redirect(childPage.url);
     }
 

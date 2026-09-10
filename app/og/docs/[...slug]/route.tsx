@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { appName } from '@/lib/shared';
 
 export const revalidate = false;
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
 function escapeXml(unsafe: string) {
   return unsafe.replace(/[<>&'"]/g, (c) => {
@@ -19,7 +21,9 @@ function escapeXml(unsafe: string) {
 
 export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...slug]'>) {
   const { slug } = await params;
-  const page = getPageSafe(slug.slice(0, -1));
+  const last = slug?.[slug.length - 1];
+  const target = last && (last.endsWith('.png') || last === 'image.png') ? slug.slice(0, -1) : slug;
+  const page = getPageSafe(target);
   if (!page) notFound();
 
   const title = escapeXml(page.data.title || appName);
@@ -41,7 +45,4 @@ export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...
   });
 }
 
-export function generateStaticParams() {
-  return [];
-}
 
