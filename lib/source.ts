@@ -5,10 +5,15 @@ import { defineDocs } from "fumadocs-mdx/macro";
 import { metaSchema } from "fumadocs-core/source/schema";
 import { questionSchema } from "./question";
 
+import { applyMdxPreset } from "fumadocs-mdx/config";
+
 const docs = defineDocs({
   dir: "content/docs",
   docs: {
     schema: questionSchema,
+    mdxOptions: applyMdxPreset({
+      remarkImageOptions: false,
+    }),
     postprocess: {
       includeProcessedMarkdown: true,
     },
