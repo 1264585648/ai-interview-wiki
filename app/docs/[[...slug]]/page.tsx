@@ -1,4 +1,4 @@
-import { getPageImageUrl, getPageMarkdownUrl, getQuestions, source } from "@/lib/source";
+import { getPageImageUrl, getPageMarkdownUrl, getPageSafe, getQuestions, source } from "@/lib/source";
 import {
   DocsBody,
   DocsDescription,
@@ -7,7 +7,7 @@ import {
   MarkdownCopyButton,
   ViewOptionsPopover,
 } from "fumadocs-ui/layouts/docs/page";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
@@ -17,8 +17,32 @@ import Link from "next/link";
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
+  const page = getPageSafe(params.slug);
+
+  if (!page) {
+    // If not found, check if this is /docs or a folder without an index.md
+    const decodedSlugs = (params.slug || []).map((s) => {
+      try {
+        return decodeURIComponent(s);
+      } catch {
+        return s;
+      }
+    });
+    const prefix = decodedSlugs.join("/");
+    const allPages = source.getPages();
+
+    // Find the first document belonging to this directory (or first document in wiki if /docs)
+    const childPage = allPages.find((p) => {
+      const pSlug = p.slugs.join("/");
+      return prefix ? pSlug.startsWith(`${prefix}/`) : true;
+    });
+
+    if (childPage) {
+      redirect(childPage.url);
+    }
+
+    notFound();
+  }
 
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
@@ -78,8 +102,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: PageProps<"/docs/[[...slug]]">): Promise<Metadata> {
   const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
+  const page = getPageSafe(params.slug);
+  if (!page) return {};
 
   return {
     title: page.data.title,

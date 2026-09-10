@@ -1,4 +1,4 @@
-import { source } from '@/lib/source';
+import { getPageSafe } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import { appName } from '@/lib/shared';
 
@@ -19,7 +19,7 @@ function escapeXml(unsafe: string) {
 
 export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...slug]'>) {
   const { slug } = await params;
-  const page = source.getPage(slug.slice(0, -1));
+  const page = getPageSafe(slug.slice(0, -1));
   if (!page) notFound();
 
   const title = escapeXml(page.data.title || appName);

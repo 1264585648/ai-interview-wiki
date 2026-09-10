@@ -57,6 +57,56 @@ export function getPageMarkdownUrl(page: WikiPage) {
   };
 }
 
+export function getPageSafe(slugs?: string[]) {
+  if (!slugs || slugs.length === 0) {
+    return null;
+  }
+
+  // 1. Direct match with raw slugs
+  let page = source.getPage(slugs);
+  if (page) return page;
+
+  // 2. Decode each segment with decodeURIComponent (handles %26 for &, full-width Chinese, etc.)
+  try {
+    const decoded = slugs.map((s) => decodeURIComponent(s));
+    page = source.getPage(decoded);
+    if (page) return page;
+  } catch {}
+
+  // 3. Decode with decodeURI
+  try {
+    const decoded = slugs.map((s) => decodeURI(s));
+    page = source.getPage(decoded);
+    if (page) return page;
+  } catch {}
+
+  // 4. Normalized path match
+  const target = slugs
+    .map((s) => {
+      try {
+        return decodeURIComponent(s);
+      } catch {
+        return s;
+      }
+    })
+    .join("/");
+
+  const allPages = source.getPages();
+  const matched = allPages.find(
+    (p) => p.slugs.join("/") === target || p.slugs.join("/").toLowerCase() === target.toLowerCase(),
+  );
+  if (matched) return matched;
+
+  // 5. If slug is a single file name (e.g. from relative link resolving without trailing slash), match last segment
+  if (slugs.length === 1) {
+    const single = target.toLowerCase();
+    const byLast = allPages.find((p) => p.slugs[p.slugs.length - 1].toLowerCase() === single);
+    if (byLast) return byLast;
+  }
+
+  return null;
+}
+
 export async function getLLMText(page: WikiPage) {
   return `# ${page.data.title} (${page.url})
 
