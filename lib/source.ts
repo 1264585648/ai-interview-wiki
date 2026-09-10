@@ -14,9 +14,6 @@ const docs = defineDocs({
     mdxOptions: applyMdxPreset({
       remarkImageOptions: false,
     }),
-    postprocess: {
-      includeProcessedMarkdown: true,
-    },
   },
   meta: {
     schema: metaSchema,
@@ -61,9 +58,7 @@ export function getPageMarkdownUrl(page: WikiPage) {
 }
 
 export async function getLLMText(page: WikiPage) {
-  const processed = await page.data.getText("processed");
-
   return `# ${page.data.title} (${page.url})
 
-${processed}`;
+${page.data.description ?? ""}`;
 }

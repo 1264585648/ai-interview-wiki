@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build:cloudflare": "opennextjs-cloudflare build --noMinify",
-    "preview:cloudflare": "opennextjs-cloudflare build --noMinify && opennextjs-cloudflare preview",
-    "deploy:cloudflare": "opennextjs-cloudflare deploy",
+    "build:cloudflare": "node --max-old-space-size=3584 node_modules/@opennextjs/cloudflare/dist/cli/index.js build --noMinify",
+    "preview:cloudflare": "node --max-old-space-size=3584 node_modules/@opennextjs/cloudflare/dist/cli/index.js build --noMinify && node node_modules/@opennextjs/cloudflare/dist/cli/index.js preview",
+    "deploy:cloudflare": "node node_modules/@opennextjs/cloudflare/dist/cli/index.js deploy",
     "dev": "next dev",
     "start": "next start",
     "types:check": "next typegen && tsc --noEmit",
