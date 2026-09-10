@@ -1,4 +1,8 @@
 {
   "title": "Java 后端",
-  "pages": ["hashmap", "jvm-gc"]
+  "pages": [
+    "index",
+    "hashmap",
+    "jvm-gc"
+  ]
 }

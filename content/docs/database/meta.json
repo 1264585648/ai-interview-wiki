@@ -1,4 +1,7 @@
 {
   "title": "数据库",
-  "pages": ["mysql-index"]
+  "pages": [
+    "index",
+    "mysql-index"
+  ]
 }

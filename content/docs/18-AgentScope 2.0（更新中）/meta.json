@@ -1,6 +1,7 @@
 {
   "title": "18-AgentScope 2.0（更新中）",
   "pages": [
+    "index",
     "01-AgentScope-Java-2.0中的HarnessAgent",
     "02-AgentScope-Java-2.0中的记忆",
     "03-AgentScope-Java-2.0中的Middleware",

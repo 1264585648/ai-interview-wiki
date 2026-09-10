@@ -1,6 +1,7 @@
 {
   "title": "26-Agent评测",
   "pages": [
+    "index",
     "01-BIRD评测DataAgent如何做公开数据评测",
     "02-BIRD评测如何改造我们的DataAgent",
     "03-BIRD评测评测数据的Schema改造",

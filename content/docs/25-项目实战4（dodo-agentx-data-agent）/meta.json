@@ -1,6 +1,7 @@
 {
   "title": "25-项目实战4（dodo-agentx-data-agent）",
   "pages": [
+    "index",
     "01-整体功能演示",
     "02-spring-ai-agentx",
     "03-项目结构与安装部署",

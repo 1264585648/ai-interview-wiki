@@ -1,4 +1,12 @@
 {
   "title": "AI",
-  "pages": ["rag", "embedding", "rerank", "agent", "function-calling", "mcp"]
+  "pages": [
+    "index",
+    "rag",
+    "embedding",
+    "rerank",
+    "agent",
+    "function-calling",
+    "mcp"
+  ]
 }

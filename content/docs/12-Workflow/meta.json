@@ -1,6 +1,7 @@
 {
   "title": "12-Workflow",
   "pages": [
+    "index",
     "01-初识Ai-Workflow",
     "02-使用-LangGraph-构建一个Ai-Workflow",
     "03-Workflow-VS-Agent",

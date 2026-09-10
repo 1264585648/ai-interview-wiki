@@ -1,6 +1,7 @@
 {
   "title": "23-RAG评测（即将完结）",
   "pages": [
+    "index",
     "01-为什么需要对RAG做评测",
     "02-RAG测评之RAG-Triad",
     "03-RAG的核心评测指标有哪些",

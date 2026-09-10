@@ -69,7 +69,10 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   );
 }
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
+  // Local/on-demand: avoid huge SSG; folder indexes + leaves render dynamically.
   return [];
 }
 

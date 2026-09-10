@@ -1,6 +1,7 @@
 {
   "title": "20-LLM Wiki",
   "pages": [
+    "index",
     "01-什么是LLM-Wiki",
     "02-Obsidian环境安装",
     "03-如何构建LLM-Wiki",

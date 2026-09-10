@@ -1,6 +1,7 @@
 {
   "title": "17-AgentScope 1.0",
   "pages": [
+    "index",
     "01-AgentScope初探",
     "02-AgentScope-Java特性流式输出结构化输出超时与重试执行控制",
     "03-AgentScope-Java特性多轮会话会话持久化",

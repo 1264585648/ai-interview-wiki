@@ -1,10 +1,11 @@
 {
   "title": "07-LangChain4j",
   "pages": [
+    "index",
     "01-初识LangChain4j",
     "02-LangChain4J低层次API使用",
     "03-LangChain4J高层次API使用",
-    "04-@AIService实现原理",
+    "04-AIService实现原理",
     "05-LangChain4J中实现持久化记忆",
     "06-Spring-AI-Spring-AI-Alibaba-Langchain4j"
   ]

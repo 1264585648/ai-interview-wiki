@@ -1,6 +1,7 @@
 {
   "title": "08-Function Call",
   "pages": [
+    "index",
     "01-什么是Function-Call",
     "02-如何定义一个好的FunctionTool",
     "03-使用Spring-AI做Function-Call",

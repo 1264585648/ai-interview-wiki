@@ -1,6 +1,7 @@
 {
   "title": "06-初探Spring AI",
   "pages": [
+    "index",
     "01-Java中大模型调用的多种方式",
     "02-基于SSE实现大模型流式输出",
     "03-LLM应用开发框架LangChain",

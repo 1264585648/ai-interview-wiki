@@ -1,6 +1,7 @@
 {
   "title": "05-提示词工程",
   "pages": [
+    "index",
     "01-什么是Prompt",
     "02-如何设计Prompt",
     "03-高阶Prompt优化方法",

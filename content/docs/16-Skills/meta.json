@@ -1,6 +1,7 @@
 {
   "title": "16-Skills",
   "pages": [
+    "index",
     "01-什么是Agent-Skills为什么需要他",
     "02-Skill的渐进式披露",
     "03-Claude-Code中如何使用Skills",
